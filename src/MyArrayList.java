@@ -1,7 +1,7 @@
 import java.util.Iterator;
 import java.util.function.Consumer;
 
-public class MyArrayList<T> implements Iterable<T> {
+public class MyArrayList<T> implements Iterable<T>,MyList<T> {
     MyArrayList(int initSize){
         if(initSize<0) throw new IllegalArgumentException("Size cannot be negative");
         else arr = new Object[initSize];
@@ -27,7 +27,7 @@ public class MyArrayList<T> implements Iterable<T> {
         arr = temp;
     }
 
-    public void remove(int index){
+    public boolean remove(int index){
         if(index>=0){
             if(size>index){
                 Object[] temp = new Object[size--];
@@ -38,6 +38,7 @@ public class MyArrayList<T> implements Iterable<T> {
                     temp[i] = arr[i+1];
                 }
                 arr = temp;
+                return true;
             }
             else {
                 throw new IllegalArgumentException("Index out of bounds");
@@ -60,6 +61,26 @@ public class MyArrayList<T> implements Iterable<T> {
     }
 
     public int size(){ return size; }
+
+    @Override
+    public void addFirst(T data) {
+        insert(0,data);
+    }
+
+    @Override
+    public void addLast(T data) {
+        add(data);
+    }
+
+    @Override
+    public void removeFirst() {
+        remove(0);
+    }
+
+    @Override
+    public void removeLast() {
+        remove(size-1);
+    }
 
     public T get(int index){
         if(index>=0){
@@ -111,12 +132,27 @@ public class MyArrayList<T> implements Iterable<T> {
         return false;
     }
 
-    public String toString(){
-        String temp = "";
+    @Override
+    public int indexOf(T data) {
         for(int i=0;i<size;i++){
-            temp += arr[i] + " ";
+            if(data.equals(arr[i])){
+                return i;
+            }
         }
-        return temp;
+        return -1;
+    }
+
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<size;i++){
+            sb.append(arr[i].toString()).append(" ");
+        }
+        return sb.toString();
+    }
+
+    @Override
+    public void reverse() {
+
     }
 
     public boolean isEmpty(){

@@ -1,40 +1,45 @@
 public class Main {
-    public static void main(String[] args) {
-        MyArrayList<String> myArrayList = new MyArrayList<>(5);
-        myArrayList.add("a");
-        myArrayList.add("b");
-        myArrayList.add("e");
-        System.out.println(myArrayList);
+    static void implement(MyList<String> myList) {
+        myList.add("a");
+        myList.add("b");
+        myList.add("e");
+        System.out.println(myList);
 
-        myArrayList.set(2, "c");
-        System.out.println(myArrayList);
+        myList.set(2, "c");
+        System.out.println(myList);
 
-        myArrayList.add("f");
-        myArrayList.remove(3);
-        System.out.println(myArrayList);
+        myList.add("f");
+        myList.remove(3);
+        System.out.println(myList);
 
-        myArrayList.remove("b");
-        System.out.println(myArrayList);
+        myList.remove("b");
+        System.out.println(myList);
 
-        myArrayList.insert(1, "b");
-        System.out.println(myArrayList);
+        myList.insert(1, "b");
+        System.out.println(myList);
 
-        System.out.println(myArrayList.isEmpty());
-        System.out.println(myArrayList.contains("a"));
-        System.out.println(myArrayList.get(1));
-        System.out.println(myArrayList.size());
+        System.out.println(myList.isEmpty());
+        System.out.println(myList.contains("a"));
+        System.out.println(myList.get(1));
+        System.out.println(myList.size());
 
-        myArrayList.insert(0,"d");
-        System.out.println(myArrayList);
+        myList.insert(0,"d");
+        System.out.println(myList);
 
-        myArrayList.bubbleSort();
-        System.out.println(myArrayList);
+        myList.bubbleSort();
+        System.out.println(myList);
 
-        for(String s : myArrayList){
+        for(String s : myList){
             System.out.println(s);
         }
 
-        myArrayList.clear();
-        System.out.println(myArrayList);
+        myList.clear();
+        System.out.println(myList);
+    }
+    public static void main(String[] args) {
+        MyArrayList<String> myList = new MyArrayList<>();
+        MyLinkedList<String> myLinkedList = new MyLinkedList<>();
+        implement(myList);
+        implement(myLinkedList);
     }
 }
